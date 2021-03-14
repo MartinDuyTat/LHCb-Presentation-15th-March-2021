@@ -38,6 +38,7 @@
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{subcaption}
 \usepackage[en-GB]{datetime2}
+\usepackage{overpic}
 \usepackage{feynmp}
 \DeclareGraphicsRule{*}{mps}{*}{}
 
@@ -51,8 +52,8 @@
 \institute{Oxford LHCb}
 \date{\today}
 
-\titlegraphic{\includegraphics[height = 3cm]{lhcb.jpg}\hspace{1cm}~%
-              \includegraphics[height = 3cm]{ckmfitter.png}}
+\titlegraphic{\includegraphics[height = 3cm, width = 4cm]{lhcb.jpg}\hspace{2cm}~%
+              \includegraphics[height = 3cm, width = 4cm]{ckmfitter.png}}
 
 \begin{document}
 
@@ -70,7 +71,7 @@
   \begin{itemize}
     \setlength\itemsep{1.2em}
     \item{$B^\pm\to DK^\pm$, $D\to K^+K^-\pi^+\pi^-$, \href{https://arxiv.org/abs/hep-ph/0611272}{arXiv:hep-ph/0611272}}
-    \item{Model independent measurement, external strong phase input from BESIII}
+    \item{Model independent measurement with BESIII strong phase input}
     \item{Estimate $2000$ $B$ events from LHCb Run $1$ and $2$}
     \begin{itemize}
       \item{Benchmark: $\sigma(\gamma) = \SI{11}{\degree}$ from model dependent fit}
@@ -78,7 +79,7 @@
     \end{itemize}
     \item{Pull study to test and optimize binning scheme}
     \begin{itemize}
-      \item{Simulated $1000$ experiments with $2000$ event each}
+      \item{Simulated $1000$ experiments with $2000$ events each}
       \item{Strong phases from amplitude model using MC integration}
     \end{itemize}
   \end{itemize}
@@ -87,22 +88,135 @@
 \section{Binning scheme}
 \begin{frame}{Binning scheme}
   \begin{itemize}
-    \setlength\itemsep{1.5em}
-    \item{Previously: Parameterized 5D phase space and defined binning scheme in terms of $5$ coordinates}
+    \item{Aim: Pick binning scheme to maximize $x_\pm$ and $y_\pm$ sensitivity}
+  \end{itemize}
+  \begin{block}{Event yield in bin $i$}
+    $N^+_i = h_{B^+}\Big(\bar{K_i} + \big(x_+^2 + y_+^2\big)K_i + 2\sqrt{K_i\bar{K_i}}\big(x_+c_i - y_+s_i\big)\Big)$
+    $N^+_{-i} = h_{B^+}\Big(K_i + \big(x_+^2 + y_+^2\big)\bar{K_i} + 2\sqrt{K_i\bar{K_i}}\big(x_+c_i + y_+s_i\big)\Big)$
+    $x_\pm = r_B\cos(\delta_B\pm\gamma), \quad y_\pm = r_B\sin(\delta_B\pm\gamma)$
+  \end{block}
+  \begin{itemize}
+    \item{Previously: Rectangular parameterization of 5D phase space}
     \item{Better and simpler:}
     \begin{itemize}
       \item{Generate C++ source code for amplitude model using AmpGen}
       \item{Evaluate amplitude directly in analysis}
-      \item{Decide bin based on strong phase directly}
+      \item{Decide bin based on strong phase and amplitude ratio directly}
     \end{itemize}
   \end{itemize}
-  \vspace{1cm}
-  \begin{equation*}
-    \frac{\mathcal{A}(D^0)}{\mathcal{A}(\bar{D^0})} = r_D\exp(i\delta_D)
-  \end{equation*}
+  \begin{block}{Strong phase and amplitude ratio}
+    $\mathcal{A}(D^0)/\mathcal{A}(\bar{D^0}) = r_D\exp(i\delta_D)$
+  \end{block}
 \end{frame}
 
+\begin{frame}{Naive ampltiude binning scheme}
+  \begin{figure}
+    \begin{overpic}[scale = 0.19, percent]{Binning1.png}
+      \put(24, 34){\huge 1}
+      \put(40.5, 34){\huge 2}
+      \put(57.5, 34){\huge 3}
+      \put(74, 34){\huge 4}
+      \put(23, 17){\huge -4}
+      \put(39.5, 17){\huge -3}
+      \put(56.5, 17){\huge -2}
+      \put(73, 17){\huge -1}
+    \end{overpic}
+  \end{figure}
+\end{frame}
 
+\begin{frame}{Pull study naive amplitude binning}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaDistribution8BinsFixedWidth.png}
+      \caption{$\gamma$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaPull8BinsFixedWidth.png}
+      \caption{$\gamma$ pull}
+    \end{subfigure}
+  \end{figure}
+  \begin{center}
+    Achieved $\gamma$ precision of $\sigma(\gamma) = \SI{13}{\degree}$
+  \end{center}
+\end{frame}
+
+\begin{frame}{Optimize bin widths}
+  \begin{itemize}
+    \item{Optimize $x_\pm$, $y_\pm$ sensitivity}
+    \item{Vary bin edges, keep symmetric around $\delta_D = 0$}
+  \end{itemize}
+  \begin{block}{Binning $Q$ value}
+    $Q^2 = 1 - \sum_i\frac{K_i\bar{K_i}(1 - c_i^2 - s_i^2)}{N_i}\Big/\sum_iK_i$ \\
+    $Q^2\approx\sum_iN_i(c_i^2 + s_i^2)\Big/\sum_iN_i$
+  \end{block}
+  \begin{itemize}
+    \item{Can achieve $Q\approx0.90$ with $8$ bins $\implies$ expect $\sigma(\gamma) = \SI{12}{\degree}$}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Variable widths binning scheme}
+  \begin{figure}
+    \begin{overpic}[scale = 0.19, percent]{Binning3.png}
+      \put(26, 34){\huge 1}
+      \put(42, 34){\huge 2}
+      \put(55, 34){\huge 3}
+      \put(72, 34){\huge 4}
+      \put(24.5, 17){\huge -4}
+      \put(41, 17){\huge -3}
+      \put(54, 17){\huge -2}
+      \put(70.5, 17){\huge -1}
+    \end{overpic}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Pull study with variable widths binning}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaDistribution8BinsVariableWidth.png}
+      \caption{$\gamma$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaPull8BinsVariableWidth.png}
+      \caption{$\gamma$ pull}
+    \end{subfigure}
+  \end{figure}
+  \begin{center}
+    Achieved $\gamma$ precision of $\sigma(\gamma) = \SI{12}{\degree}$
+  \end{center}
+\end{frame}
+
+\begin{frame}{Binning along $r_D$}
+  \begin{itemize}
+    \item{Further optmization by binning along $r_D$}
+    \item{Claim: Can use \textbf{same} $c_i$ and $s_i$ in bin $i$ and $i'$}
+    \item{Can push $\sigma(\gamma)$ down by $\SI{0.5}{\degree}$-$\SI{1}{\degree}$}
+  \end{itemize}
+  \begin{figure}
+    \vspace{-0.2cm}
+    \begin{overpic}[scale = 0.17, percent]{Binning2.png}
+      \put(24, 29){\huge 1}
+      \put(40.5, 29){\huge 2}
+      \put(57.5, 29){\huge 3}
+      \put(74, 29){\huge 4}
+      \put(24, 38){\huge 1'}
+      \put(40.5, 38){\huge 2'}
+      \put(57.5, 38){\huge 3'}
+      \put(74, 38){\huge 4'}
+      \put(23, 20){\huge -4}
+      \put(39.5, 20){\huge -3}
+      \put(56.5, 20){\huge -2}
+      \put(73, 20){\huge -1}
+      \put(23, 11){\huge -4'}
+      \put(39.5, 11){\huge -3'}
+      \put(56.5, 11){\huge -2'}
+      \put(73, 11){\huge -1'}
+    \end{overpic}
+  \end{figure}
+\end{frame}
 
 % \section{Binned fit of \texorpdfstring{$D\to K^+K^-\pi^+\pi^-$}{D to K+K-pi+pi-}}
 % \begin{frame}{Binned fit of $D\to K^+K^-\pi^+\pi^-$}
