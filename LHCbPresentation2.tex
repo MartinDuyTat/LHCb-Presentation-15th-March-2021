@@ -218,6 +218,169 @@
   \end{figure}
 \end{frame}
 
+\section{First look at LHCb data}
+\begin{frame}{First look at LHCb data}
+  \begin{itemize}
+    \setlength\itemsep{1.3em}
+    \item{DaVinci scripts from $K_S\pi^+\pi^-$ analysis}
+    \item{Have obtained full Run $2$ data and MC}
+    \item{DaVinci issues with Run $1$, unable to run DecayTreeFitter}
+    \item{Event selection:}
+    \begin{itemize}
+      \item{Initial rectangular cuts}
+      \item{Gradient Boosted Decision Tree}
+      \item{Final cuts}
+      \item{Mass fit}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{First look at LHCb data}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DPi.png}
+      \caption{$m(D\pi)$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DK.png}
+      \caption{$m(DK)$ distribution}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{BDT sample preparation}
+  \begin{itemize}
+    \setlength\itemsep{1.3em}
+    \item{Signal training sample: $B\to D\pi$ MC samples}
+    \item{Background training sample: High mass sideband in data}
+    \begin{itemize}
+      \item{$\SI{5800}{\mega\eV} < m(Dh) < \SI{7000}{\mega\eV}$}
+    \end{itemize}
+    \item{Signal region: $\SI{5080}{\mega\eV} < m(Dh) < \SI{5800}{\mega\eV}$}
+    \item{Initial cuts:}
+    \begin{itemize}
+      \item{Standard trigger requirements}
+      \item{Bachelor $P < \SI{100}{\giga\eV}$ and has RICH}
+      \item{$K^\pm$ daughters $P < \SI{100}{\giga\eV}$ and has RICH}
+      \item{DecayTreeFitter convergence}
+      \item{$\abs{m(D) - m_\text{PDG}(D)} < \SI{25}{\mega\eV}$}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{BDT training}
+    \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BDToutput.png}
+      \caption{BDT output}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BDToutputLog.png}
+      \caption{BDT output on a logarithmic scale}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Final selection}
+  \begin{itemize}
+    \setlength\itemsep{1.3em}
+    \item{PID cut for bachelor at $4$}
+    \begin{itemize}
+      \item{$\text{Bach\_PIDK} > 4$ for $B\to DK$}
+      \item{$\text{Bach\_PIDK} < 4$ for $B\to D\pi$}
+    \end{itemize}
+    \item{$K^\pm$ daughter PID cut at $-5$}
+    \item{DecayTreeFitter $\ln(\chi^2) < 3$}
+    \item{$B$-$D$ flight significance at $0.5$}
+    \item{BDT working point at $0.75$}
+    \item{\textbf{Not} optimized yet}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mass plots after final selection}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassAfterCutsB2DPi.png}
+      \caption{$m(D\pi)$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassAfterCutsB2DK.png}
+      \caption{$m(DK)$ distribution}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Mass fit}
+  \begin{itemize}
+    \item{Signal shape: Double Crystal Ball}
+    \begin{itemize}
+      \item{Tail parameters taken from fit to MC $B\to D\pi$}
+      \item{Width and mean is floated}
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width = 0.8\textwidth]{MassFitMC.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Mass fit}
+  \begin{itemize}
+    \setlength\itemsep{1.3em}
+    \item{Combinatorial background: Exponential curve}
+    \item{Partially reconstructed background:}
+    \begin{itemize}
+      \item{Shape parameters taken from LHCb-ANA-2017-057.1}
+      \item{$B^\pm\to(D^{*0}\to D^0[\pi^0])\pi^\pm$: HORNSdini}
+      \item{$B^0\to(D^{*\pm}\to D^0[\pi^\mp])\pi^\pm$: HORNSdini}
+      \item{$B^\pm\to D^0\to(\rho^\pm\to\pi^\pm[\pi^0])\pi^\pm$: HORNSdini}
+      \item{$B^\pm\to(D^{*0}\to D^0[\gamma])\pi^\pm$: HILLdini}
+    \end{itemize}
+    \item{Further complication for $B\to DK$ mode:}
+    \begin{itemize}
+      \item{Cross-feed from $B\to D\pi$: Double Crystal Ball with same tail parameters as signal for now}
+      \item{Mis-ID of partially reconstructed background: Haven't considered yet, absorb into a Gaussian for now}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mass fit plots}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \begin{overpic}[scale = 0.25, percent]{MassFitB2Dpi.png}
+        \put(40, 50){\tiny Signal events: $43217 \pm 223$}
+      \end{overpic}
+      \caption{$m(D\pi)$ mass fit}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \begin{overpic}[scale = 0.25, percent]{MassFitB2DK.png}
+        \put(40, 50){\tiny Signal events: $3596 \pm 137$}
+      \end{overpic}
+      \caption{$m(DK)$ mass fit}
+    \end{subfigure}
+  \end{figure}
+  \begin{itemize}
+    \color{red}
+    \item{Signal}
+    \color{green}
+    \item{Partially reconstructed background}
+    \color{blue}
+    \item{Combinatorial background (dashed)}
+    \color{cyan}
+    \item{Cross feed}
+    \color{black}
+    \item{Mis-ID of partially reconstructed background}
+  \end{itemize}
+\end{frame}
+
+
 % \section{Binned fit of \texorpdfstring{$D\to K^+K^-\pi^+\pi^-$}{D to K+K-pi+pi-}}
 % \begin{frame}{Binned fit of $D\to K^+K^-\pi^+\pi^-$}
 %   \vspace{-0.5cm}
@@ -281,5 +444,14 @@
 %     \end{subfigure}
 %   \end{figure}
 % \end{frame}
+
+\begin{frame}{Backup slides}
+  \begin{center}
+    DaVinci error message:
+  \end{center}
+  \begin{figure}
+    \includegraphics[width = 1\textwidth]{DaVinciError.png}
+  \end{figure}
+\end{frame}
 
 \end{document}
