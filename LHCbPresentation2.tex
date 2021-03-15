@@ -91,9 +91,9 @@
     \item{Aim: Pick binning scheme to maximize $x_\pm$ and $y_\pm$ sensitivity}
   \end{itemize}
   \begin{block}{Event yield in bin $i$}
+    $x_\pm = r_B\cos(\delta_B\pm\gamma), \quad y_\pm = r_B\sin(\delta_B\pm\gamma)$
     $N^+_i = h_{B^+}\Big(\bar{K_i} + \big(x_+^2 + y_+^2\big)K_i + 2\sqrt{K_i\bar{K_i}}\big(x_+c_i - y_+s_i\big)\Big)$
     $N^+_{-i} = h_{B^+}\Big(K_i + \big(x_+^2 + y_+^2\big)\bar{K_i} + 2\sqrt{K_i\bar{K_i}}\big(x_+c_i + y_+s_i\big)\Big)$
-    $x_\pm = r_B\cos(\delta_B\pm\gamma), \quad y_\pm = r_B\sin(\delta_B\pm\gamma)$
   \end{block}
   \begin{itemize}
     \item{Previously: Rectangular parameterization of 5D phase space}
@@ -131,7 +131,7 @@
   \end{itemize}
   \begin{block}{Binning $Q$ value}
     $Q^2 = 1 - \sum_i\frac{K_i\bar{K_i}(1 - c_i^2 - s_i^2)}{N_i}\Big/\sum_iK_i$ \\
-    $Q^2\approx\sum_iN_i(c_i^2 + s_i^2)\Big/\sum_iN_i$
+    $Q^2\approx\sum_iN_i(c_i^2 + s_i^2)\Big/\sum_iN_i$ if $r_B = 0$
   \end{block}
   \begin{itemize}
     \item{Can achieve $Q\approx0.90$ with $8$ bins $\implies$ expect $\sigma(\gamma) = \SI{12}{\degree}$}
@@ -217,30 +217,9 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{First look at LHCb data}
-  \begin{figure}
-    \centering
-    \vspace{-0.2cm}
-    \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DPi.png}
-      \caption{$m(D\pi)$ distribution}
-    \end{subfigure}%
-    \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DK.png}
-      \caption{$m(DK)$ distribution}
-    \end{subfigure}
-  \end{figure}
-\end{frame}
-
 \begin{frame}{BDT sample preparation}
   \begin{itemize}
     \setlength\itemsep{1.3em}
-    \item{Signal training sample: $B\to D\pi$ MC samples}
-    \item{Background training sample: High mass sideband in data}
-    \begin{itemize}
-      \item{$\SI{5800}{\mega\eV} < m(Dh) < \SI{7000}{\mega\eV}$}
-    \end{itemize}
-    \item{Signal region: $\SI{5080}{\mega\eV} < m(Dh) < \SI{5800}{\mega\eV}$}
     \item{Initial cuts:}
     \begin{itemize}
       \item{Standard trigger requirements}
@@ -249,6 +228,12 @@
       \item{DecayTreeFitter convergence}
       \item{$\abs{m(D) - m_\text{PDG}(D)} < \SI{25}{\mega\eV}$}
     \end{itemize}
+    \item{Signal training sample: $B\to D\pi$ MC samples}
+    \item{Background training sample: High mass sideband in data}
+    \begin{itemize}
+      \item{$\SI{5800}{\mega\eV} < m(Dh) < \SI{7000}{\mega\eV}$}
+    \end{itemize}
+    \item{Signal region: $\SI{5080}{\mega\eV} < m(Dh) < \SI{5800}{\mega\eV}$}
   \end{itemize}
 \end{frame}
 
@@ -281,6 +266,22 @@
     \item{BDT working point at $0.75$}
     \item{\textbf{Not} optimized yet}
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Mass plots before stripping}
+  $B$ mass distributions after stripping:
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DPi.png}
+      \caption{$m(D\pi)$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{BMassBeforeCutsB2DK.png}
+      \caption{$m(DK)$ distribution}
+    \end{subfigure}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Mass plots after final selection}
@@ -454,8 +455,8 @@
 \begin{frame}{Double tag method}
   \begin{itemize}
     \setlength\itemsep{1.3em}
-    \item{$M_i = h(K_i \mp 2c_i\sqrt{K_i\bar{K_i}} + \bar{K_i})$}
-    \item{$M_{ij} = h(K_i\bar{K_j} + \bar{K_i}K_j - 2\sqrt{K_i\bar{K_i}K_j\bar{K_j}}(c_ic_j + s_is_j))$}
+    \item{$N_i = h(K_i \mp 2c_i\sqrt{K_i\bar{K_i}} + \bar{K_i})$}
+    \item{$N_{ij} = h(K_i\bar{K_j} + \bar{K_i}K_j - 2\sqrt{K_i\bar{K_i}K_j\bar{K_j}}(c_ic_j + s_is_j))$}
     \item{Normalization constant $h$ depends on single tagged yields}
   \end{itemize}
 \end{frame}
