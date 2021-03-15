@@ -502,11 +502,15 @@
     \centering
     \vspace{-0.2cm}
     \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1\textwidth]{KKpipiMBCFit.png}
+      \begin{overpic}[scale = 0.25, percent]{KKpipiMBCFit.png}
+        \put(17, 55){\tiny Yield: $61868 \pm 1343$}
+      \end{overpic}
       \caption{$KK\pi\pi$ beam constrained mass}
     \end{subfigure}%
     \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1\textwidth]{KKpipiMBCFit.png}
+      \begin{overpic}[scale = 0.25, percent]{pipipi0MBCFit.png}
+        \put(17, 55){\tiny Yield: $3429930 \pm 9730$}
+      \end{overpic}
       \caption{$\pi\pi\pi^0$ beam constrained mass}
     \end{subfigure}
   \end{figure}
@@ -525,74 +529,10 @@
     \item{Understand partially reconstructed backgrounds in LHCb data}
     \item{Finish implementing all tag modes in BESIII analysis, analyse peaking backgrounds}
   \end{itemize}
+  \begin{center}
+    Thank you!
+  \end{center}
 \end{frame}
-
-
-
-
-% \section{Binned fit of \texorpdfstring{$D\to K^+K^-\pi^+\pi^-$}{D to K+K-pi+pi-}}
-% \begin{frame}{Binned fit of $D\to K^+K^-\pi^+\pi^-$}
-%   \vspace{-0.5cm}
-%   \begin{align*}
-%     \mathcal{A}(B^-\to(K^+K^-\pi^+\pi^-)_DK^-) =& \mathcal{A}_B\mathcal{A}(D^0\to K^+K^-\pi^+\pi^-) \\
-%   +& \mathcal{A}_B\mathcal{A}(\bar{D^0}\to K^+K^-\pi^+\pi^-)r_Be^{i(\delta_B - \gamma)}
-%   \end{align*}
-%   \vspace{-0.5cm}
-%   \begin{block}{Event yield in bin $i$}
-%     $N^-_i = h_{B^-}\Big(K_i + \big(x_-^2 + y_-^2\big)\bar{K_i} + 2\sqrt{K_i\bar{K_i}}\big(x_-c_i + y_-s_i\big)\Big)$
-%     $N^+_i = h_{B^+}\Big(\bar{K_i} + \big(x_+^2 + y_+^2\big)K_i + 2\sqrt{K_i\bar{K_i}}\big(x_+c_i - y_+s_i\big)\Big)$
-%   \end{block}
-%   \begin{block}{CP-violating observables}
-%     $x_\pm = r_B\cos(\delta_B\pm\gamma), \quad y_\pm = r_B\sin(\delta_B\pm\gamma)$
-%   \end{block}
-%   \begin{itemize}
-%     \item{$c_i$, $s_i$: Amplitude-averaged strong phase difference of $D$ decay}
-%     \item{Measure $c_i$ and $s_i$ at BES III detector}
-%     \item{Can measure $K_i$ and $\bar{K_i}$ at both LHCb and BES III}
-%     \item{Need to divide phase space into bins}
-%   \end{itemize}
-% \end{frame}
-
-% \begin{frame}{Pull studies}
-%   \begin{itemize}
-%     \item{Pull studies shows that this works}
-%     \item{Used an arbitrary and naive binning scheme with $4$ bins}
-%     \item{$x_\pm$ pulls show asymmetric tails for $\SI{2e3}{}$ events}
-%     \item{$x_\pm$ and $y_\pm$ are all satisfactory for $\SI{2e4}{}$ events}
-%   \end{itemize}
-%   \begin{block}{Naive binning scheme}
-%     Split phase space along the boundaries $E_{K^+} = E_{K_-}$ and $E_{\pi^+} = E_{\pi^-}$ \\
-%     Bin $1$: $E_{K^+} > E_{K^-}, \quad E_{\pi^+} > E_{\pi^-}$, \dots
-%   \end{block}
-%   \begin{block}{$D$ decay hadronic parameters}
-%     \begin{equation*}
-%       c_i = \frac{\int_i\dd{\Phi}|\mathcal{A}(D^0)||\mathcal{A}(\bar{D^0})|\cos(\delta_D)}{\sqrt{\int_i\dd{\Phi}\abs{\mathcal{A}(D^0)}^2\int_i\dd{\Phi}\abs{\mathcal{A}(D^0)}^2}}, \quad K_i = \frac{\int_i\dd{\Phi}|\mathcal{A}(D^0)|^2}{\sum_j\int_j\dd{\Phi}\abs{\mathcal{A}(D^0)}^2}
-%     \end{equation*}
-%   \end{block}
-% \end{frame}
-
-% \begin{frame}{Pull study with $\SI{2e3}{}$ events}
-%   \begin{figure}
-%     \centering
-%     \vspace{-0.2cm}
-%     \begin{subfigure}{0.5\textwidth}
-%       \includegraphics[width = 1.0\textwidth]{xplus1K1K.png}
-%       \caption{$x_+$ pull}
-%     \end{subfigure}%
-%     \begin{subfigure}{0.5\textwidth}
-%       \includegraphics[width = 1.0\textwidth]{xminus1K1K.png}
-%       \caption{$x_-$ pull}
-%     \end{subfigure}
-%     \begin{subfigure}{0.5\textwidth}
-%       \includegraphics[width = 1.0\textwidth]{yplus1K1K.png}
-%       \caption{$y_+$ pull}
-%     \end{subfigure}%
-%     \begin{subfigure}{0.5\textwidth}
-%       \includegraphics[width = 1.0\textwidth]{yminus1K1K.png}
-%       \caption{$y_-$ pull}
-%     \end{subfigure}
-%   \end{figure}
-% \end{frame}
 
 \begin{frame}{Backup slides: DaVinci error}
   \begin{center}
