@@ -124,24 +124,6 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Pull study naive amplitude binning}
-  \begin{figure}
-    \centering
-    \vspace{-0.2cm}
-    \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1.0\textwidth]{GammaDistribution8BinsFixedWidth.png}
-      \caption{$\gamma$ distribution}
-    \end{subfigure}%
-    \begin{subfigure}{0.5\textwidth}
-      \includegraphics[width = 1.0\textwidth]{GammaPull8BinsFixedWidth.png}
-      \caption{$\gamma$ pull}
-    \end{subfigure}
-  \end{figure}
-  \begin{center}
-    Achieved $\gamma$ precision of $\sigma(\gamma) = \SI{13}{\degree}$
-  \end{center}
-\end{frame}
-
 \begin{frame}{Optimize bin widths}
   \begin{itemize}
     \item{Optimize $x_\pm$, $y_\pm$ sensitivity}
@@ -191,7 +173,7 @@
 
 \begin{frame}{Binning along $r_D$}
   \begin{itemize}
-    \item{Further optmization by binning along $r_D$}
+    \item{Further optimization by binning along $r_D$}
     \item{Claim: Can use \textbf{same} $c_i$ and $s_i$ in bin $i$ and $i'$}
     \item{Can push $\sigma(\gamma)$ down by $\SI{0.5}{\degree}$-$\SI{1}{\degree}$}
   \end{itemize}
@@ -380,6 +362,173 @@
   \end{itemize}
 \end{frame}
 
+\section{BESIII double tag analysis}
+\begin{frame}{BESIII double tag analysis}
+  \begin{center}
+    Produce $D$ mesons through $e^+e^-\to\psi(3770)\to D^0\bar{D^0}$:
+  \end{center}
+  \begin{figure}[H]
+    \centering
+    \vspace{0.0cm}
+    \begin{fmffile}{fgraph_ee}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,5)
+        \fmfleft{i}
+        \fmfright{o}
+        \fmflabel{$e^-$}{i}
+        \fmflabel{$e^+$}{o}
+        \fmf{fermion}{i,w}
+        \fmf{fermion}{o,w}
+        \fmfblob{1cm}{w}
+        \fmfv{label=$\psi(3770)\to D^0\bar{D^0}$,label.dist=15,label.angle=90}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{0.0cm}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{BESIII double tag analysis}
+  \begin{center}
+    Double tagged signal ($K^+K^-\pi^+\pi^-$) with known CP tag ($\pi^+\pi^-$)
+  \end{center}
+  \begin{figure}[H]
+    \centering
+    \vspace{0.0cm}
+    \begin{fmffile}{fgraph_DD}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,5)
+        \fmfstraight
+        \fmfleft{i4,i3,i2,i1}
+        \fmfright{g1,o1,o2,g2}
+        \fmflabel{$\pi^-$}{o1}
+        \fmflabel{$\pi^+$}{o2}
+        \fmflabel{$K^+$}{i1}
+        \fmflabel{$K^-$}{i2}
+        \fmflabel{$\pi^+$}{i3}
+        \fmflabel{$\pi^-$}{i4}
+        \fmf{fermion}{w,i1}
+        \fmf{fermion}{w,i2}
+        \fmf{fermion}{w,i3}
+        \fmf{fermion}{w,i4}
+        \fmf{fermion}{w,o1}
+        \fmf{fermion}{w,o2}
+        \fmf{phantom}{w,g1}
+        \fmf{phantom}{w,g2}
+        \fmfblob{1cm}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{0.0cm}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{BESIII double tag analysis}
+  \begin{center}
+    Single tagged ($\pi^+\pi^-$)
+  \end{center}
+  \begin{figure}[H]
+    \centering
+    \vspace{0.0cm}
+    \begin{fmffile}{fgraph_DDs}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,5)
+        \fmfstraight
+        \fmfleft{i4,i3,i2,i1}
+        \fmfright{g1,o1,o2,g2}
+        \fmflabel{$\pi^-$}{o1}
+        \fmflabel{$\pi^+$}{o2}
+        \fmf{phantom}{i1,w}
+        \fmf{phantom}{i2,w}
+        \fmf{phantom}{i3,w}
+        \fmf{phantom}{i4,w}
+        \fmf{fermion}{w,o1}
+        \fmf{fermion}{w,o2}
+        \fmf{phantom}{g1,w}
+        \fmf{phantom}{g2,w}
+        \fmfblob{1cm}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{0.0cm}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Double tag method}
+  \begin{itemize}
+    \setlength\itemsep{1.3em}
+    \item{$M_i = h(K_i \mp 2c_i\sqrt{K_i\bar{K_i}} + \bar{K_i})$}
+    \item{$M_{ij} = h(K_i\bar{K_j} + \bar{K_i}K_j - 2\sqrt{K_i\bar{K_i}K_j\bar{K_j}}(c_ic_j + s_is_j))$}
+    \item{Normalization constant $h$ depends on single tagged yields}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Double tag progress}
+  \begin{itemize}
+    \setlength\itemsep{1.2em}
+    \item{Implemented $14$ tag modes so far, with another $5$ to come (full list in backup slides)}
+    \item{Run over the full $2010$+$2011$ MC $D^0\bar{D^0}$ dataset}
+    \item{Single tagged yield:}
+    \begin{itemize}
+      \item{Fit $m_{BC} = \sqrt{E_\text{beam}^2 - \vb{p}_D^2}$}
+      \item{Double Crystal Ball for signal}
+      \item{Argus PDF for background}
+    \end{itemize}
+    \item{Double tagged yield}
+    \begin{itemize}
+      \item{$\Delta E = E_D - E_\text{beam}$ cut}
+      \item{Fit double Gaussian and 2nd order polynomial to $\Delta E$}
+      \item{Cut at $[-3\sigma, 3\sigma]$ ($[-4\sigma, 3\sigma]$ for $\pi^0$ modes)}
+      \item{Subtract flat background from sidebands}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{$\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KKpipiDeltaE.png}
+      \caption{$KK\pi\pi$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{pipipi0DeltaE.png}
+      \caption{$\pi\pi\pi^0$ tag}
+    \end{subfigure}
+  \end{figure}
+  See backup for other tag modes
+\end{frame}
+
+\begin{frame}{$M_\text{BC}$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KKpipiMBCFit.png}
+      \caption{$KK\pi\pi$ beam constrained mass}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KKpipiMBCFit.png}
+      \caption{$\pi\pi\pi^0$ beam constrained mass}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\section{Summary}
+\begin{frame}{Summary}
+  Summary:
+  \begin{itemize}
+    \item{Binning scheme is satisfactory}
+    \item{Started mass fits with LHCb data}
+    \item{Most tag modes in BESIII analysis are ready}
+  \end{itemize}
+  Next steps:
+  \begin{itemize}
+    \item{Understand partially reconstructed backgrounds in LHCb data}
+    \item{Finish implementing all tag modes in BESIII analysis, analyse peaking backgrounds}
+  \end{itemize}
+\end{frame}
+
+
+
 
 % \section{Binned fit of \texorpdfstring{$D\to K^+K^-\pi^+\pi^-$}{D to K+K-pi+pi-}}
 % \begin{frame}{Binned fit of $D\to K^+K^-\pi^+\pi^-$}
@@ -445,12 +594,144 @@
 %   \end{figure}
 % \end{frame}
 
-\begin{frame}{Backup slides}
+\begin{frame}{Backup slides: DaVinci error}
   \begin{center}
     DaVinci error message:
   \end{center}
   \begin{figure}
     \includegraphics[width = 1\textwidth]{DaVinciError.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: Pull study naive amplitude binning}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaDistribution8BinsFixedWidth.png}
+      \caption{$\gamma$ distribution}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1.0\textwidth]{GammaPull8BinsFixedWidth.png}
+      \caption{$\gamma$ pull}
+    \end{subfigure}
+  \end{figure}
+  \begin{center}
+    Achieved $\gamma$ precision of $\sigma(\gamma) = \SI{13}{\degree}$
+  \end{center}
+\end{frame}
+
+\begin{frame}{Backup slides: List of tag modes}
+  \begin{itemize}
+    \item{Flavour tags:}
+    \begin{itemize}
+      \item{$K\pi$, $K\pi\pi^0$}
+    \end{itemize}
+    \item{CP tags}:
+    \begin{itemize}
+      \item{$KK$, $\pi\pi$, $\pi\pi\pi^0$}
+      \item{$K_S\pi^0$, $K_S\pi^0\pi^0$, $K_S^0\eta$, $K_S^0\eta'(\pi\pi\eta)$, $K_S^0\eta'(\rho\gamma)$}
+      \item{$K_S^0\omega(\pi\pi\pi^0)$, $K_S^0\eta(\pi\pi\pi^0)$, $K_S^0\phi$}
+    \end{itemize}
+    \begin{itemize}
+      \item{$K_S^0\pi^+\pi^-$}
+      \item{$K^+K^-\pi^+\pi^-$}
+    \end{itemize}
+    \item{Will also include:}
+    \begin{itemize}
+      \item{$K\pi\pi\pi$, $Ke\nu_e$}
+      \item{$K_L\pi^0$, $K_L\pi^0\pi^0$, $K_L\omega$}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KKDeltaE.png}
+      \caption{$KK$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{pipiDeltaE.png}
+      \caption{$\pi\pi$ tag}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KpiDeltaE.png}
+      \caption{$K\pi$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{Kpipi0DeltaE.png}
+      \caption{$K\pi\pi^0$ tag}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSpi0DeltaE.png}
+      \caption{$K_S\pi^0$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSpi0pi0DeltaE.png}
+      \caption{$K_S\pi^0\pi^0$ tag}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSetaDeltaE.png}
+      \caption{$K_S\eta$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSetaPrimepipietaDeltaE.png}
+      \caption{$K_S\eta'(\pi\pi\eta)$ tag}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSetaPrimerhogammaDeltaE.png}
+      \caption{$K_S\eta'(\pi\pi\gamma)$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSpipipi0DeltaE.png}
+      \caption{$K_S(\eta, \omega)(\pi\pi\pi^0)$ tag}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Backup slides: $\Delta E$ fits}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSKKDeltaE.png}
+      \caption{$K_SKK$ tag}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width = 1\textwidth]{KSpipiDeltaE.png}
+      \caption{$K_S\pi\pi$ tag}
+    \end{subfigure}
   \end{figure}
 \end{frame}
 
